@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube Video Grid</title>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-gap: 16px;
+      padding: 20px;
+    }
+
+    .iframe-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+    }
+
+    .iframe-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-container" id="videoGrid"></div>
+
+  <script>
+    // Array of YouTube video IDs - add as many as you need
+    const videoIDs = [
+      "CexP04VqslY",
+      "FJkNRIa_aus",
+      "AwaOE1PGWb8",
+      "kToX_Kmcbm8",
+      "5_66ZSFDGjE",
+      "muf9wtzHcf0",
+      "_TxvRiTa25w",
+      "LIyD7mhkJKc",
+      "VT6AGuxpgVw",
+      "haydEABXaIU",
+      "X-y5Eh5w1yE",
+      "B44OGAmFmTg",
+      "k6FU55CZmoA",
+      "Vkw9TvoM_1c",
+      "r_W4N3MKKs8",
+      "WJGnc1Od9T4",
+      "ykRdwRc2aFw",
+      "tvOxuvO5JN4",
+      "BR2FBtxhtgE",
+      "dsInrKbSwWk"
+    ];
+
+    const videoGrid = document.getElementById('videoGrid');
+
+    videoIDs.forEach(id => {
+      const containerDiv = document.createElement('div');
+      containerDiv.classList.add('iframe-container');
+
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${id}`;
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+
+      containerDiv.appendChild(iframe);
+      videoGrid.appendChild(containerDiv);
+    });
+  </script>
+  
+</body>
+</html>
