@@ -5,11 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>YouTube Video Grid</title>
   <style>
+
+    body.hide{
+        opacity: 0.05;
+    }
+
+    .container{
+        display: flex;
+    }
+
+    .space{
+        width: 40px;
+    }
+
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       grid-gap: 16px;
       padding: 20px;
+      flex:1;
     }
 
     .iframe-container {
@@ -31,7 +45,12 @@
 </head>
 <body>
 
-  <div class="grid-container" id="videoGrid"></div>
+    <div class="container">
+        <div class="space">
+            <button id="hide">hide</button>
+        </div>
+        <div class="grid-container" id="videoGrid"></div>
+    </div>
 
   <script>
     // Array of YouTube video IDs - add as many as you need
@@ -72,6 +91,15 @@
       containerDiv.appendChild(iframe);
       videoGrid.appendChild(containerDiv);
     });
+
+    const hideBtn = document.getElementById('hide');
+    hide.addEventListener('click',()=>{
+        document.body.classList.toggle('hide')
+    })
+
+    setInterval(()=>{
+        window.location.reload()
+    },1000 * 60 * 20)
   </script>
   
 </body>
