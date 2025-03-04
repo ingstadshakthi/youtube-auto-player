@@ -93,8 +93,22 @@
       ];
 
       const videoGrid = document.getElementById('videoGrid');
-      const videosPerBatch = 3;
+      let videosPerBatch = 3;
       let currentIndex = 0;
+
+        const screenWidth = window.innerWidth;
+
+        if (screenWidth > 1200) {
+          // Desktop: load everything (or a larger batch)
+          videosPerBatch = videoIDs.length;
+        } else if (screenWidth >= 600 && screenWidth <= 1200) {
+          // Tablet: load 5 videos
+          videosPerBatch = 5;
+        } else {
+          // Mobile: load 3 videos
+          videosPerBatch = 3;
+        }
+
 
       // Function to load the next batch of videos.
       function loadNextBatch() {
